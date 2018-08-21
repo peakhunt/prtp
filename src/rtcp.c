@@ -85,7 +85,7 @@ rtcp_check_pkt(rtp_session_t* sess, uint8_t* pkt, uint32_t len)
 
   do
   {
-    RTPLOGI(TAG, "compound pkt: len: %u\n", ntohs(r->common.length));
+    // RTPLOGI(TAG, "compound pkt: len: %u\n", ntohs(r->common.length));
     r = (rtcp_t *)((uint32_t *)r + ntohs(r->common.length) + 1);
   }
   while (r < end && r->common.version == 2);
@@ -96,7 +96,7 @@ rtcp_check_pkt(rtp_session_t* sess, uint8_t* pkt, uint32_t len)
     return 0;
   }
 
-  RTPLOGI(TAG, "rtcp pkt validation pass\n");
+  // RTPLOGI(TAG, "rtcp pkt validation pass\n");
 
   sess->last_rtcp_error = rtcp_rx_error_no_error;
 
