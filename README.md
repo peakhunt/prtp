@@ -31,7 +31,13 @@ Just take a look at demo/. It is basically just a single-threaded/select() based
 ## Demo
   * modify demo/rtp_task.c so that IP addresses conform to you. (Sorry this is just a demo)
   * replace test_pcm_ulaw.raw if you want something else
+  * make
   * on the top level, build/petra_rtp_test 0 or build/petra_rtp_test 1 depending on your IP address setup
   * modify test_vlc.sdp depending on your IP address.
   * cvlc -vvv ./test_vlc.sdp
   * Enjoy your playback
+
+## Unit Testing
+Unit testing is done using CUnit.
+  * sudo apt install libcunit1-dev if you don't have it installed on your machine
+  * make unit_test
