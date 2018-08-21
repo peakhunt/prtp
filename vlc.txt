@@ -1,0 +1,3 @@
+vlc --demux avformat,none --avformat-format mulaw --avformat-options "{ar=8000,ac=1}" 
+
+cvlc -vvv ./test_vlc.sdp
