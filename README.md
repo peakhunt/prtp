@@ -10,7 +10,7 @@
   * No media recoding/playback mechanism assumed. That's none of RTP's business. That is yours.
   * Just conform to RFC3550! No more than that!
   * No malloc in library itself! Everything is static configured and this makes it easier to port the code to micro controller's with no heap.
-  * Single threaded assumed. If you wanna go with multi-threaded, you gotta protect your rtp_session_XXX calls with your own lock.
+  * Single threading assumed. If you wanna go with multi-threading, you gotta protect your rtp_session_XXX calls as well as rtp session callbacks with your own lock.
 
 ## Usage
 As a prtp user, all you have to care is rtp_session_t defined in rtp_session.[ch].  
