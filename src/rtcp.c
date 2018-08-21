@@ -849,14 +849,14 @@ rtcp_handle_bye(rtp_session_t* sess, rtcp_t* r, struct sockaddr_in* from, uint32
 
     if(rtp_member_is_rtp_heard(m))
     {
-      RTPLOGI(TAG, "bye sender & member");
+      RTPLOGI(TAG, "bye sender & member\n");
       rtcp_interval_handle_rtcp_event(sess, RTCP_EVENT_RX_BYE,
           RTCP_INTERVAL_FLAGS_SENDER | RTCP_INTERVAL_FLAGS_MEMBER,
           pkt_size);
     }
     else
     {
-      RTPLOGI(TAG, "bye member");
+      RTPLOGI(TAG, "bye member\n");
       rtcp_interval_handle_rtcp_event(sess, RTCP_EVENT_RX_BYE,
           RTCP_INTERVAL_FLAGS_MEMBER, 
           pkt_size);
