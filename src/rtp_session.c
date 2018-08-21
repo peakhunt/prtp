@@ -109,7 +109,7 @@ rtp_session_rx_rtcp(rtp_session_t* sess, uint8_t* pkt, uint32_t len, struct sock
 }
 
 void
-rtp_timer_tick(rtp_session_t* sess)
+rtp_session_timer_tick(rtp_session_t* sess)
 {
   soft_timer_drive(&sess->soft_timer);
 }

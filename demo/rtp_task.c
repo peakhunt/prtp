@@ -207,7 +207,7 @@ rtp_task_timer_callback(io_driver_watcher_t* watcher, io_driver_event event)
 
   // DLOGI(TAG, "rtp task timing tick\n");
 
-  rtp_timer_tick(&_rtp_session);
+  rtp_session_timer_tick(&_rtp_session);
 }
 
 static void

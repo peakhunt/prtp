@@ -1,5 +1,6 @@
 # prtp
   A simple to use and portable RTP library conforming to RFC 3550.
+  'p' in prtp stands for petra & portable.
 
 ## Philosophy
   * Should be simple to use.
@@ -17,6 +18,10 @@ To use that, you have to implement
   * a user callback that returns current RTP timestamp, which is managed by you‥
   * a set of transport layer calls to send RTP/RTCP packets.
   * 100ms (by default) based timing service to manage internal RTP timers.
+
+Just take a look at demo/. It is basically just a single-threaded/select() based implementation for a simple PCM uLaw playback.
+
+![Usage](doc/prtp_usage.png "Usage")
 
 ## Architecture
 FIXME

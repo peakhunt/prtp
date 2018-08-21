@@ -83,7 +83,7 @@ test_basic_self_send(void)
   //
   for(uint32_t i = 0; i < (RTP_CONFIG_SENDER_TIMEOUT / sess->soft_timer.tick_rate); i++)
   {
-    rtp_timer_tick(sess);
+    rtp_session_timer_tick(sess);
   }
 
   CU_ASSERT(sess->rtcp_var.we_sent == RTP_FALSE);
@@ -103,7 +103,7 @@ test_basic_self_send(void)
   //
   for(uint32_t i = 0; i < (RTP_CONFIG_SENDER_TIMEOUT / sess->soft_timer.tick_rate)/2; i++)
   {
-    rtp_timer_tick(sess);
+    rtp_session_timer_tick(sess);
   }
 
   CU_ASSERT(sess->rtcp_var.we_sent == RTP_TRUE);
@@ -116,7 +116,7 @@ test_basic_self_send(void)
   //
   for(uint32_t i = 0; i < (RTP_CONFIG_SENDER_TIMEOUT / sess->soft_timer.tick_rate); i++)
   {
-    rtp_timer_tick(sess);
+    rtp_session_timer_tick(sess);
   }
 
   CU_ASSERT(sess->rtcp_var.we_sent == RTP_FALSE);

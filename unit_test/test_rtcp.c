@@ -222,7 +222,7 @@ test_rtcp_member_timeout(void)
   // now let the member timeout
   for(uint32_t i = 0; i < (RTP_CONFIG_MEMBER_TIMEOUT / sess->soft_timer.tick_rate); i++)
   {
-    rtp_timer_tick(sess);
+    rtp_session_timer_tick(sess);
   }
 
   m = rtp_session_lookup_member(sess, 1001);
@@ -360,7 +360,7 @@ test_rtcp_own_conflict(void)
   // let the conflict entry timeout
   for(uint32_t i = 0; i < (RTP_CONFIG_SOURCE_CONFLICT_TIMEOUT / sess->soft_timer.tick_rate); i++)
   {
-    rtp_timer_tick(sess);
+    rtp_session_timer_tick(sess);
   }
   CU_ASSERT(rtp_source_conflict_lookup(&sess->src_conflict, &_rtcp_rem_addr) == RTP_FALSE);
 

@@ -132,6 +132,6 @@ extern void rtp_session_rx_rtcp(rtp_session_t* sess, uint8_t* pkt, uint32_t len,
 //
 // 100ms tick event from library user
 //
-extern void rtp_timer_tick(rtp_session_t* sess);
+extern void rtp_session_timer_tick(rtp_session_t* sess);
 
 #endif /*! __RTP_SESSION_DEF_H__ */

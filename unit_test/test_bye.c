@@ -80,7 +80,7 @@ test_bye_normal_rtp(void)
   // let the leave timer timeout
   for(uint32_t i = 0; i < (RTP_CONFIG_LEAVE_TIMEOUT / sess->soft_timer.tick_rate); i++)
   {
-    rtp_timer_tick(sess);
+    rtp_session_timer_tick(sess);
   }
   CU_ASSERT(rtp_session_lookup_member(sess, 1234) == NULL);
 
@@ -146,7 +146,7 @@ test_bye_normal_rtcp(void)
   // let the leave timer timeout
   for(uint32_t i = 0; i < (RTP_CONFIG_LEAVE_TIMEOUT / sess->soft_timer.tick_rate); i++)
   {
-    rtp_timer_tick(sess);
+    rtp_session_timer_tick(sess);
   }
   CU_ASSERT(rtp_session_lookup_member(sess, 1234) == NULL);
   CU_ASSERT(sess->rtcp_var.members == 1);
