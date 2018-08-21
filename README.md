@@ -10,8 +10,9 @@
   * Just conform to RFC3550! No more than that!
 
 ## Usage
-As a prtp user, all you have to care is rtp_session_t defined in rtp_session.[ch].
-To use that, you have to implement
+As a prtp user, all you have to care is rtp_session_t defined in rtp_session.[ch].  
+To use that, you have to implement  
+
   * a set of user callbacks for RTP RX/RTCP RR RX notification.
   * a user callback that returns current RTP timestamp, which is managed by you‥
   * a set of transport layer calls to send RTP/RTCP packets.
