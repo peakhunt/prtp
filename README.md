@@ -9,6 +9,7 @@
   * No threading assumed. Whatever mechanism you might use, that is none of RTP's business.
   * No media recoding/playback mechanism assumed. That's none of RTP's business. That is yours.
   * Just conform to RFC3550! No more than that!
+  * No malloc in library itself! Everything is static configured and this makes it easier to port the code to micro controller's with no heap.
 
 ## Usage
 As a prtp user, all you have to care is rtp_session_t defined in rtp_session.[ch].  
@@ -24,7 +25,12 @@ Just take a look at demo/. It is basically just a single-threaded/select() based
 ![Usage](doc/prtp_usage.png "Usage")
 
 ## Architecture
-FIXME
+![Usage](doc/prtp_architecture.png "Architecture")
 
 ## Demo
-FIXME
+  * modify demo/rtp_task.c so that IP addresses conform to you. (Sorry this is just a demo)
+  * replace test_pcm_ulaw.raw if you want something else
+  * on the top level, build/petra_rtp_test 0 or build/petra_rtp_test 1 depending on your IP address setup
+  * modify test_vlc.sdp depending on your IP address.
+  * cvlc -vvv ./test_vlc.sdp
+  * Enjoy your playback
