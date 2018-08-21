@@ -60,14 +60,14 @@ rtcp_check_pkt(rtp_session_t* sess, uint8_t* pkt, uint32_t len)
 
   if(len < sizeof(rtcp_common_t))
   {
-    RTPLOGE(TAG, "packet is smaller than minimum header: %d\n", len);
+    RTPLOGE(TAG, "packet is smaller than minimum header: %u\n", len);
     sess->last_rtcp_error = rtcp_rx_error_header_too_short;
     return RTP_FALSE;
   }
 
   if((len % 4) != 0)
   {
-    RTPLOGE(TAG, "len is not multiple of 4: %d\n", len);
+    RTPLOGE(TAG, "len is not multiple of 4: %u\n", len);
     sess->last_rtcp_error = rtcp_rx_error_len_not_multiple_4;
     return RTP_FALSE;
   }
@@ -76,7 +76,7 @@ rtcp_check_pkt(rtp_session_t* sess, uint8_t* pkt, uint32_t len)
 
   if ((*(uint16_t *)r & RTCP_VALID_MASK) != RTCP_VALID_VALUE)
   {
-    RTPLOGE(TAG, "invalid header for the first rtcp packet %d\n", *(uint16_t *)r);
+    RTPLOGE(TAG, "invalid header for the first rtcp packet %u\n", *(uint16_t *)r);
     sess->last_rtcp_error = rtcp_rx_error_invalid_mask;
     return RTP_FALSE;
   }
@@ -85,7 +85,7 @@ rtcp_check_pkt(rtp_session_t* sess, uint8_t* pkt, uint32_t len)
 
   do
   {
-    RTPLOGI(TAG, "compound pkt: len: %d\n", ntohs(r->common.length));
+    RTPLOGI(TAG, "compound pkt: len: %u\n", ntohs(r->common.length));
     r = (rtcp_t *)((uint32_t *)r + ntohs(r->common.length) + 1);
   }
   while (r < end && r->common.version == 2);
@@ -643,7 +643,7 @@ rtcp_handle_ssrc(rtp_session_t* sess, uint32_t ssrc, struct sockaddr_in* from, u
     m= rtp_session_alloc_member(sess, ssrc);
     if(m == NULL)
     {
-      RTPLOGE(TAG, "failed to rtp_session_alloc_member: %d\n", ssrc);
+      RTPLOGE(TAG, "failed to rtp_session_alloc_member: %u\n", ssrc);
       sess->last_rtcp_error = rtcp_rx_error_member_alloc_failed;
       return NULL;
     }
@@ -708,7 +708,7 @@ rtcp_handle_ssrc(rtp_session_t* sess, uint32_t ssrc, struct sockaddr_in* from, u
       return NULL;
     }
 
-    RTPLOGI(TAG, "ssrc conflict: %d\n", ssrc);
+    RTPLOGI(TAG, "ssrc conflict: %u\n", ssrc);
 
     rtp_source_conflict_add(&sess->src_conflict, from);
     rtcp_tx_bye(sess);
@@ -845,7 +845,7 @@ rtcp_handle_bye(rtp_session_t* sess, rtcp_t* r, struct sockaddr_in* from, uint32
     }
 
     // bye handling
-    RTPLOGI(TAG, "bye received from %d\n", m->ssrc);
+    RTPLOGI(TAG, "bye received from %u\n", m->ssrc);
 
     if(rtp_member_is_rtp_heard(m))
     {

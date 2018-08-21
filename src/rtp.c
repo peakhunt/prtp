@@ -117,7 +117,7 @@ rtp_header_validity_check(rtp_session_t* sess, uint8_t* msg, uint32_t len, uint8
   if(len < (sizeof(rtp_hdr_t) - 4))
   {
     sess->last_rtp_error = rtp_rx_error_header_too_short;
-    RTPLOGE(TAG, "rtp packet too small: %d\n", len);
+    RTPLOGE(TAG, "rtp packet too small: %u\n", len);
     return RTP_FALSE;
   }
 
@@ -125,7 +125,7 @@ rtp_header_validity_check(rtp_session_t* sess, uint8_t* msg, uint32_t len, uint8
   if(len < hdr_size)
   {
     sess->last_rtp_error = rtp_rx_error_invalid_csrc_count;
-    RTPLOGE(TAG, "rtp invalid hdr size: %d:%d\n", len, hdr_size);
+    RTPLOGE(TAG, "rtp invalid hdr size: %u:%u\n", len, hdr_size);
     return RTP_FALSE;
   }
 
@@ -156,7 +156,7 @@ rtp_header_validity_check(rtp_session_t* sess, uint8_t* msg, uint32_t len, uint8
 
     if(padding_len >= (len - hdr_size))
     {
-      RTPLOGE(TAG, "P bit is set. Invalid last octet count: %d:%d\n", padding_len, len);
+      RTPLOGE(TAG, "P bit is set. Invalid last octet count: %u:%u\n", padding_len, len);
       sess->last_rtp_error = rtp_rx_error_invalid_octet_count;
       return RTP_FALSE;
     }
@@ -208,7 +208,7 @@ rtp_handle_ssrc(rtp_session_t* sess, uint32_t ssrc, uint16_t seq, struct sockadd
     if(m == NULL)
     {
       sess->last_rtp_error = rtp_rx_error_member_alloc_failed;
-      RTPLOGE(TAG, "failed to rtp_session_alloc_member: %d\n", ssrc);
+      RTPLOGE(TAG, "failed to rtp_session_alloc_member: %u\n", ssrc);
       return NULL;
     }
 
@@ -298,7 +298,7 @@ rtp_handle_ssrc(rtp_session_t* sess, uint32_t ssrc, uint16_t seq, struct sockadd
     }
 
     // new collision, change SSRC identifier
-    RTPLOGI(TAG, "ssrc conflict: %d\n", ssrc);
+    RTPLOGI(TAG, "ssrc conflict: %u\n", ssrc);
 
     rtp_source_conflict_add(&sess->src_conflict, from);
     rtcp_tx_bye(sess);
