@@ -109,6 +109,11 @@ rtp_task_tx_rtcp(rtp_session_t* sess, uint8_t* pkt, uint32_t len)
 //
 //////////////////////////////////////////////////////////////////////////
 static void
+rtp_task_sr_report(rtp_session_t* sess, uint32_t from_ssrc, rtcp_t* r)
+{
+}
+
+static void
 rtp_task_rr_report(rtp_session_t* sess, uint32_t from_ssrc, rtcp_rr_t* rr)
 {
 }
@@ -359,6 +364,7 @@ rtp_task_rtcp_control(uint8_t enable)
 void
 rtp_task_init(uint8_t blah)
 {
+  _rtp_session.sr_rpt         = rtp_task_sr_report;
   _rtp_session.rr_rpt         = rtp_task_rr_report;
   _rtp_session.tx_rtp         = rtp_task_tx_rtp;
   _rtp_session.tx_rtcp        = rtp_task_tx_rtcp;

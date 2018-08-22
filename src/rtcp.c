@@ -764,6 +764,8 @@ rtcp_handle_sr(rtp_session_t* sess, rtcp_t* r, struct sockaddr_in* from, uint32_
   {
     rtcp_handle_rr_item(sess, ntohl(r->r.sr.ssrc), &r->r.sr.rr[i]);
   }
+
+  sess->sr_rpt(sess, ntohl(r->r.sr.ssrc), r);
 }
 
 static void

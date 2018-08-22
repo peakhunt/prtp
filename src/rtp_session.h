@@ -45,6 +45,7 @@ struct __rtp_session_t
   //
   int (*rx_rtp)(rtp_session_t* sess, rtp_rx_report_t* rpt);
   uint32_t (*rtp_timestamp)(rtp_session_t* sess);
+  void (*sr_rpt)(rtp_session_t* sess, uint32_t from_ssrc, rtcp_t* r);
   void (*rr_rpt)(rtp_session_t* sess, uint32_t from_ssrc, rtcp_rr_t* rr);
 
   //

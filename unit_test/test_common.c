@@ -32,6 +32,11 @@ dummy_tx_rtcp(rtp_session_t* sess, uint8_t* pkt, uint32_t len)
 }
 
 static void
+dummy_sr_rpt(rtp_session_t* sess, uint32_t ssrc, rtcp_t* r)
+{
+}
+
+static void
 dummy_rr_rpt(rtp_session_t* sess, uint32_t ssrc, rtcp_rr_t* rr)
 {
 }
@@ -57,6 +62,7 @@ common_session_init(void)
   sess = malloc(sizeof(rtp_session_t));
   CU_ASSERT(sess != NULL);
 
+  sess->sr_rpt = dummy_sr_rpt;
   sess->rr_rpt = dummy_rr_rpt;
   sess->rtp_timestamp = test_rtp_timestamp;
   sess->tx_rtp = dummy_tx_rtp;
